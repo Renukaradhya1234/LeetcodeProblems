@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link rel="stylesheet" href="./calculator.css">
+</head>
+<body>
+    <div class="main-calculator-body">
+        <div class="result">
+            <input type="text" class="display" id="display" placeholder="0">
+        </div>
+        <div class="number-pad">
+            <input type="button" class="number" id="identity" value="AC" onclick="allclear()">
+            <input type="button" class="number" id="identity" value="DEL" onclick="del()">
+            <input type="button" class="number" id="identity" value="%" onclick="per()">
+            <input type="button" class="number" id="identity" value="/" onclick="div()">
+            <input type="button" class="number" value="7" onclick="seven()">
+            <input type="button" class="number" value="8" onclick="eight()">
+            <input type="button" class="number" value="9" onclick="nine()">
+            <input type="button" class="number" id="identity" value="*" onclick="mul()">
+            <input type="button" class="number" value="4" onclick="four()">
+            <input type="button" class="number" value="5" onclick="five()">
+            <input type="button" class="number" value="6" onclick="six()">
+            <input type="button" class="number" id="identity" value="-" onclick="sub()">
+            <input type="button" class="number" value="1" onclick="one()">
+            <input type="button" class="number" value="2" onclick="two()">
+            <input type="button" class="number" value="3" onclick="three()">
+            <input type="button" class="number" id="identity" value="+" onclick="add()">
+            <input type="button" class="number" value="00" onclick="dzero()">
+            <input type="button" class="number" value="0" onclick="zero()">
+            <input type="button" class="number" id="identity" value="." onclick="dot()">
+            <input type="button" class="number" id="equal" value="=" onclick="equal()">
+        </div>
+    </div>
+    <script src="./calculator.js"></script>
+</body>
+</html>
