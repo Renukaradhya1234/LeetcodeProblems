@@ -1,0 +1,62 @@
+{% extends 'dashboard.html' %}
+
+{% block title %}
+  Member Details 
+{% endblock %}
+
+{% block details %}
+    <center><p>Member Details </p></center>
+    <button class="btn btn-primary" > <a href='{% url "addmember" %}' style="color: white; text-decoration: none;">Add Member </a></button>
+        <br>
+        <br>
+        <div class="datatable-container">
+            <!-- ======= Header tools ======= -->
+            <div class="header-tools">
+              <div class="search">
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <input type="search" class="search-input" placeholder="Enter the name" name="key" />
+                </form>
+              </div>
+            </div>
+          
+            <!-- ======= Table ======= -->
+            <table class="datatable">
+              <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Member Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>phone</th>
+                    <th>Email</th>
+                    <th>Trainer Id</th>
+                    <th colspan="2"><center>action</center></th>
+                    <th></th>
+                </tr>
+              </thead>
+          
+              <tbody>
+                {% for i in data %}
+                    <tr>
+                        <td><img src="{{i.mimage.url}}" alt="{{i.mname}}" width="40px"></td>
+                        <td> <a href="{% url 'detailsmember' id=i.mid %}" style="color: white; text-decoration: none;">{{i.mname}}</a></td>
+                        <td>{{i.mdob}}</td>
+                        <td>{% if i.mgender == 'M'%}
+                              Male
+                            {% else %}
+                              Female
+                            {% endif %}
+                        </td>
+                        <td>{{i.mphone}}</td>
+                        <td>{{i.memail}}</td>
+                        <td>{{i.mtrainerid}}</td>
+                        <td><a href="{% url 'updatemember' id=i.mid %}"><button class="btn btn-primary">update</button></a></td>
+                        <td><a href="{% url 'deletemember' id=i.mid %}"><button class="btn btn-danger">delete</button></a></td>
+                        <td><a href="{% url 'detailsmember' id=i.mid %}"><button class="btn btn-info">view</button></a></td>
+                    </tr>
+                {% endfor %}                
+              </tbody>
+            </table>
+        </div>
+{% endblock %}
