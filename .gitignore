@@ -1,1 +1,10 @@
+#django
 /gym_management_django/env/
+
+#csharp general
+bin/
+obj/
+.vs/
+
+#csharp
+runLanguages/Properties/
