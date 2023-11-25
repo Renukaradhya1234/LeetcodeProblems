@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 INDEX_TEMPLATE = os.path.join(BASE_DIR, 'templates')
 
 # template present in front_end app 
-FRONT_END_TEMPLATE = os.path.join(BASE_DIR, 'front_end', 'templates')
+FRONT_END_TEMPLATE = os.path.join(BASE_DIR, 'frontEnd', 'templates')
 
 #dashboard templates
 DASHBOARD_TEMPLATE = os.path.join(BASE_DIR, 'owner', 'templates')
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'front_end',
+    'frontEnd',
     'owner'
 ]
 
