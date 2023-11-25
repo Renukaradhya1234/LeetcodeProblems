@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Windows.Automation; // right click on References, then add Presentation Core property.
+using System.Windows.Automation; // right click on References, then add Presentation Core property or add AutomationType.
 using CaptureAutomationElement.Component;
 using System.Diagnostics; // add System in references.
 
