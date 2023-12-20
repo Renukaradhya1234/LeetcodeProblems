@@ -4,11 +4,14 @@ db.sqlite3
 __pycache__/
 
 #csharp general
+App.config
+AssemblyInfo.cs
+Properties/
 bin/
 obj/
 .vs/
 packages/
-*.sln
+# *.sln
 
 #csharp
 runLanguages/Properties/

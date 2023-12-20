@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 // Learning about ProcessStartInfo class...
 namespace Practice
@@ -32,7 +31,10 @@ namespace Practice
             // collecting the error thrown from that file
             processStart.ErrorDataReceived += (sender, errorResult) =>
             {
-                Console.WriteLine("Error: " + errorResult.Data); // Print error data
+                if(errorResult.Data?.Length > 0)
+                {
+                    Console.WriteLine("Error: " + errorResult.Data);
+                } // Print error data
             };
 
 
@@ -50,11 +52,10 @@ namespace Practice
             ProcessStart process = new ProcessStart();
 
             // python program
-            process.startProcess("python", "C:\\Users\\Admin\\Desktop\\practice\\dotnet2\\python.py");
+            process.startProcess("python", "./programmingLanguages/python.py");
 
             // JavaScript program
-            process.startProcess("node", "C:\\Users\\Admin\\Desktop\\practice\\dotnet2\\javascripts.js");
-            Console.ReadKey();
+            process.startProcess("node", "./programmingLanguages/javascripts.js");
         }
     }
 }
