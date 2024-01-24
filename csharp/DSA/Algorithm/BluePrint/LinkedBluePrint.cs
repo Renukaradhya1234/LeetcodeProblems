@@ -8,7 +8,7 @@ namespace BaseNamespace
 		
 		void AddBegin(); // to add the value to beginning
 		void AddMiddle(); // to add the value to middle of list
-		void AddEnd(); // to add the value at the end of list
+		void AddEnd(int? Value); // to add the value at the end of list
 
 
 		void Display(); // to display the values present in list
@@ -21,9 +21,11 @@ namespace BaseNamespace
 		void RemoveFirst(); // to remove the first value
 		void RemoveMiddle(); // to remove the middle value using index
 		void RemoveLast(); // to remove the last value
+		void RemoveValue(); // to remove all given value
 		
-		
-		bool Contains(); // to check value present or not
+		bool Contains(int? Data); // to check value present or not
 		int FindIndex(); // to find the value
+
+		void AskQuestion(); 
 	}
 }

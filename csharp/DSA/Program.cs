@@ -8,7 +8,8 @@ namespace MyNamespace
 		{
 			Console.WriteLine("Program Running...");
 
-			SingleLinkedList.AskQuestion();
+			DoubleLinkedList doubleLinked = new();
+			doubleLinked.AskQuestion();
 			
 			Console.WriteLine("Program Ended...");
 		}

@@ -4,7 +4,7 @@ namespace Collections.Algorithms
 {
 	public class Node
 	{
-		public int? Data { get; set; }
+		public int Data { get; set; }
 		public Node? Next { get; set; }
 	}
 	public class SingleLinkedList : IBluePrint
@@ -14,7 +14,7 @@ namespace Collections.Algorithms
 
 		public SingleLinkedList()
 		{
-			this.Header = null;
+			Header = null;
 		}
 
 		// add to begin
@@ -68,10 +68,18 @@ namespace Collections.Algorithms
 			}
 		}
 		// add to end
-		public void AddEnd()
+		public void AddEnd(int? Value)
 		{
-			Console.WriteLine("Enter the value: ");
-			int data = Convert.ToInt32(Console.ReadLine());
+			int data;
+			if (Value != null)
+			{
+				data = (int)Value;
+			}
+			else
+			{
+				Console.WriteLine("Enter the value: ");
+				data = Convert.ToInt32(Console.ReadLine());
+			}
 
 			Node newNode = new()
 			{
@@ -137,9 +145,9 @@ namespace Collections.Algorithms
 
 			Node? currentNode = Header;
 
-			while(currentNode != null)
+			while (currentNode != null)
 			{
-				if(currentNode.Data == OldValue)
+				if (currentNode.Data == OldValue)
 				{
 					currentNode.Data = NewValue;
 				}
@@ -149,16 +157,17 @@ namespace Collections.Algorithms
 		// remove first
 		public void RemoveFirst()
 		{
-			if(Header != null)
+			if (Header != null)
 			{
 				Header = Header.Next;
 				Count -= 1;
 			}
-			else{
+			else
+			{
 				Console.WriteLine("List is Empty...");
 			}
 		}
-		
+
 		// remove middle
 		public void RemoveMiddle()
 		{
@@ -167,13 +176,13 @@ namespace Collections.Algorithms
 
 			Node? currentNode = Header;
 			int NodeIndex = 0;
-			while(NodeIndex < index - 1)
+			while (NodeIndex < index - 1)
 			{
 				currentNode = currentNode?.Next;
 				NodeIndex += 1;
 			}
 
-			if(currentNode != null && currentNode.Next != null)
+			if (currentNode != null && currentNode.Next != null)
 			{
 				currentNode.Next = currentNode.Next.Next;
 				Count -= 1;
@@ -185,27 +194,53 @@ namespace Collections.Algorithms
 		{
 			Node? currentNode = Header;
 
-			while(currentNode?.Next?.Next != null)
+			while (currentNode?.Next?.Next != null)
 			{
 				currentNode = currentNode.Next;
 			}
-			
-			if(currentNode != null)
+
+			if (currentNode != null)
 			{
 				currentNode.Next = null;
 				Count -= 1;
 			}
 		}
-		// to check value present or not
-		public bool Contains()
+
+		public void RemoveValue()
 		{
-			Console.WriteLine("Enter the value: ");
+			Node? currentNode = Header;
+
+			Console.WriteLine("Enter the Value: ");
 			int Value = Convert.ToInt32(Console.ReadLine());
 
-			Node? currentNode = Header;
 			while(currentNode != null)
 			{
-				if(currentNode.Data == Value)
+				if(currentNode.Next != null && currentNode.Next.Data == Value)
+				{
+					currentNode.Next = currentNode.Next.Next;
+				}
+				currentNode = currentNode.Next;
+			}
+		}
+		// to check value present or not
+		public bool Contains(int? Data)
+		{
+			int Value;
+
+			if (Data != null)
+			{
+				Value = (int)Data;
+			}
+			else
+			{
+				Console.WriteLine("Enter the value: ");
+				Value = Convert.ToInt32(Console.ReadLine());
+			}
+
+			Node? currentNode = Header;
+			while (currentNode != null)
+			{
+				if (currentNode.Data == Value)
 				{
 					return true;
 				}
@@ -224,9 +259,9 @@ namespace Collections.Algorithms
 
 			Node? currentNode = Header;
 
-			while(currentNode != null)
+			while (currentNode != null)
 			{
-				if(currentNode.Data == Value)
+				if (currentNode.Data == Value)
 				{
 					break;
 				}
@@ -236,66 +271,73 @@ namespace Collections.Algorithms
 			return index;
 		}
 
-		public static void AskQuestion()
+		public void AskQuestion()
 		{
 			SingleLinkedList linkedList = new();
-			while(true)
+			while (true)
 			{
 				Console.WriteLine("Enter the choice: ");
 				string? choice = Console.ReadLine();
-				if(choice == "addbeg")
+				if (choice == "addbeg")
 				{
 					linkedList.AddBegin();
 				}
-				else if(choice == "addmid")
+				else if (choice == "addmid")
 				{
 					linkedList.AddMiddle();
 				}
-				else if(choice == "addend")
+				else if (choice == "addend")
 				{
-					linkedList.AddEnd();
+					linkedList.AddEnd(null);
 				}
-				else if(choice == "dis")
+				else if (choice == "dis")
 				{
 					linkedList.Display();
 				}
-				else if(choice == "upin")
+				else if (choice == "upin")
 				{
 					linkedList.UpdateIndex();
 				}
-				else if(choice == "upva")
+				else if (choice == "upva")
 				{
 					linkedList.UpdateValue();
 				}
-				else if(choice == "remf")
+				else if (choice == "remf")
 				{
 					linkedList.RemoveFirst();
 				}
-				else if(choice == "remm")
+				else if (choice == "remm")
 				{
 					linkedList.RemoveMiddle();
 				}
-				else if(choice == "reml")
+				else if (choice == "reml")
 				{
 					linkedList.RemoveLast();
 				}
-				else if(choice == "len")
+				else if (choice == "len")
 				{
 					Console.WriteLine($"Length: {linkedList.Count}");
 				}
-				else if(choice == "con")
+				else if (choice == "con")
 				{
-					linkedList.Contains();
+					if(linkedList.Contains(null))
+					{
+						Console.WriteLine("Value Found...");
+					}
+					else
+					{
+						Console.WriteLine("Value Not Found...");
+					}
 				}
-				else if(choice == "find")
+				else if (choice == "find")
 				{
-					linkedList.FindIndex();
+					Console.WriteLine($"Index: {linkedList.FindIndex()}");
 				}
-				else if(choice == "exit")
+				else if (choice == "exit")
 				{
 					break;
 				}
-				else 
+				else
 				{
 					Console.WriteLine("Enter the correct choice");
 				}
