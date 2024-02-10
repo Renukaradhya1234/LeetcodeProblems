@@ -1,7 +1,7 @@
 using BaseNamespace;
 namespace Collections.Algorithms
 {
-	class DDLNode
+	public class DDLNode
 	{
 		public int Data { get; set; }
 		public DDLNode? Next { get; set; }
