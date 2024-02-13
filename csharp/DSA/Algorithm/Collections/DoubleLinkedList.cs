@@ -7,6 +7,27 @@ namespace Collections.Algorithms
 		public DDLNode? Next { get; set; }
 		public DDLNode? Prev { get; set; }
 	}
+
+	public static class DoubleLinkedListExtension
+	{
+		public static void Sort(this DoubleLinkedList doubleLinkedList)
+		{
+			if (doubleLinkedList != null)
+			{
+				Console.WriteLine("method called...");
+				for (int Index = 0; Index < doubleLinkedList.Count - 1; Index++)
+				{
+					for (int subIndex = 0; subIndex < doubleLinkedList.Count - 1; subIndex++)
+					{
+						if (doubleLinkedList[subIndex] > doubleLinkedList[subIndex + 1])
+						{
+							(doubleLinkedList[subIndex + 1], doubleLinkedList[subIndex]) = (doubleLinkedList[subIndex], doubleLinkedList[subIndex + 1]);
+						}
+					}
+				}
+			}
+		}
+	}
 	public class DoubleLinkedList : IBluePrint
 	{
 		// length
@@ -266,9 +287,9 @@ namespace Collections.Algorithms
 			DDLNode? currentNode = Header;
 			Console.WriteLine("Enter the Value: ");
 			int Value = Convert.ToInt32(Console.ReadLine());
-			while(currentNode != null)
+			while (currentNode != null)
 			{
-				if(currentNode.Data == Value)
+				if (currentNode.Data == Value)
 				{
 					if (currentNode.Prev != null)
 					{
@@ -286,8 +307,8 @@ namespace Collections.Algorithms
 		// to check value present or not
 		public bool Contains(int? Data)
 		{
-			int Value; 
-			if(Data != null)
+			int Value;
+			if (Data != null)
 			{
 				Value = (int)Data;
 			}
@@ -328,6 +349,46 @@ namespace Collections.Algorithms
 				Index += 1;
 			}
 			return Index;
+		}
+
+		public int this[int Index]
+		{
+			get
+			{
+				DDLNode? currentNode = Header;
+
+				int NodeIndex = 0;
+				while (currentNode != null && NodeIndex < Count)
+				{
+					if (Index == NodeIndex)
+					{
+						return currentNode.Data;
+					}
+					NodeIndex += 1;
+					currentNode = currentNode.Next;
+				}
+
+				throw new IndexOutOfRangeException("Index Out of Range");
+			}
+
+			set
+			{
+				DDLNode? currentNode = Header;
+
+				int NodeIndex = 0;
+				while (currentNode != null && NodeIndex < Count)
+				{
+					if (Index == NodeIndex)
+					{
+						currentNode.Data = value;
+						return;
+					}
+					NodeIndex += 1;
+					currentNode = currentNode.Next;
+				}
+
+				throw new IndexOutOfRangeException("Index Out of Range");
+			}
 		}
 
 		public void AskQuestion()
@@ -374,20 +435,29 @@ namespace Collections.Algorithms
 				{
 					linkedList.RemoveLast();
 				}
-				else if(Choice == "check")
+				else if (Choice == "check")
 				{
-					if(linkedList.Contains(null))
+					if (linkedList.Contains(null))
 					{
 						Console.WriteLine("Value Found...");
 					}
-					else 
+					else
 					{
 						Console.WriteLine("Value Not Found...");
 					}
 				}
-				else if(Choice == "findInd")
+				else if (Choice == "findInd")
 				{
 					Console.WriteLine($"Index: {linkedList.FindIndex()}");
+				}
+				else if (Choice == "getval")
+				{
+					Console.WriteLine("Enter the Index: ");
+					Console.WriteLine(linkedList[Convert.ToInt32(Console.ReadLine())]);
+				}
+				else if (Choice == "selsort")
+				{
+					linkedList.Sort();
 				}
 				else if (Choice == "quit")
 				{
