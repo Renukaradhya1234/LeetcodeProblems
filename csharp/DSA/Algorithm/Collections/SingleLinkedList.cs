@@ -7,6 +7,27 @@ namespace Collections.Algorithms
 		public int Data { get; set; }
 		public Node? Next { get; set; }
 	}
+
+	public static class SingleLinkedListExtension
+	{
+		public static void Sort(this SingleLinkedList singleLinkedList)
+		{
+			if (singleLinkedList != null)
+			{
+				Console.WriteLine("method called...");
+				for (int Index = 0; Index < singleLinkedList.Count - 1; Index++)
+				{
+					for (int subIndex = 0; subIndex < singleLinkedList.Count - 1; subIndex++)
+					{
+						if (singleLinkedList[subIndex] > singleLinkedList[subIndex + 1])
+						{
+							(singleLinkedList[subIndex + 1], singleLinkedList[subIndex]) = (singleLinkedList[subIndex], singleLinkedList[subIndex + 1]);
+						}
+					}
+				}
+			}
+		}
+	}
 	public class SingleLinkedList : IBluePrint
 	{
 		public Node? Header { get; set; }
@@ -213,9 +234,9 @@ namespace Collections.Algorithms
 			Console.WriteLine("Enter the Value: ");
 			int Value = Convert.ToInt32(Console.ReadLine());
 
-			while(currentNode != null)
+			while (currentNode != null)
 			{
-				if(currentNode.Next != null && currentNode.Next.Data == Value)
+				if (currentNode.Next != null && currentNode.Next.Data == Value)
 				{
 					currentNode.Next = currentNode.Next.Next;
 				}
@@ -271,6 +292,46 @@ namespace Collections.Algorithms
 			return index;
 		}
 
+		public int this[int Index]
+		{
+			get
+			{
+				Node? currentNode = Header;
+
+				int NodeIndex = 0;
+				while (currentNode != null && NodeIndex < Count)
+				{
+					if (Index == NodeIndex)
+					{
+						return currentNode.Data;
+					}
+					NodeIndex += 1;
+					currentNode = currentNode.Next;
+				}
+
+				throw new IndexOutOfRangeException("Index Out of Range");
+			}
+
+			set
+			{
+				Node? currentNode = Header;
+
+				int NodeIndex = 0;
+				while (currentNode != null && NodeIndex < Count)
+				{
+					if (Index == NodeIndex)
+					{
+						currentNode.Data = value;
+						return;
+					}
+					NodeIndex += 1;
+					currentNode = currentNode.Next;
+				}
+
+				throw new IndexOutOfRangeException("Index Out of Range");
+			}
+		}
+
 		public void AskQuestion()
 		{
 			SingleLinkedList linkedList = new();
@@ -320,7 +381,7 @@ namespace Collections.Algorithms
 				}
 				else if (choice == "con")
 				{
-					if(linkedList.Contains(null))
+					if (linkedList.Contains(null))
 					{
 						Console.WriteLine("Value Found...");
 					}
@@ -332,6 +393,15 @@ namespace Collections.Algorithms
 				else if (choice == "find")
 				{
 					Console.WriteLine($"Index: {linkedList.FindIndex()}");
+				}
+				else if (choice == "getval")
+				{
+					Console.WriteLine("Enter the Index: ");
+					Console.WriteLine(linkedList[Convert.ToInt32(Console.ReadLine())]);
+				}
+				else if(choice == "sort")
+				{
+					linkedList.Sort();
 				}
 				else if (choice == "exit")
 				{
