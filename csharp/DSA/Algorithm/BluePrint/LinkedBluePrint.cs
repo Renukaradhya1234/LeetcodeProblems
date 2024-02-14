@@ -25,7 +25,7 @@ namespace BaseNamespace
 		
 		bool Contains(int? Data); // to check value present or not
 		int FindIndex(); // to find the value
-
+		
 		void AskQuestion(); 
 	}
 }

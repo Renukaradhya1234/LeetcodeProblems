@@ -399,7 +399,7 @@ namespace Collections.Algorithms
 					Console.WriteLine("Enter the Index: ");
 					Console.WriteLine(linkedList[Convert.ToInt32(Console.ReadLine())]);
 				}
-				else if(choice == "sort")
+				else if (choice == "sort")
 				{
 					linkedList.Sort();
 				}
