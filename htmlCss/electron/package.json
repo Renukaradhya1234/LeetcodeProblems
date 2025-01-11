@@ -1,0 +1,39 @@
+{
+    "name": "front_end_learn",
+    "version": "1.0.0",
+    "description": "Learning React and Electron from basic",
+    "main": "public/electron.js",
+    "type": "module",
+    "homepage": ".",
+    "dependencies": {
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1",
+      "react-scripts": "^5.0.1",
+      "@types/react": "18.3.3",
+      "@types/react-dom": "18.3.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "build-electron": "electron-builder build --win",
+      "start-electron": "electron ."
+    },
+    "author": "Renukaradhya T B",
+    "license": "MIT",
+    "devDependencies": {
+      "electron": "^31.1.0",
+      "electron-builder": "^24.13.3"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
