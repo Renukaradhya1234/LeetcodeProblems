@@ -1,7 +1,0 @@
-{
-	"name": "com.mynative.host",
-	"description": "My Application",
-	"path": "F:\\git\\AllPracticingPrograms\\csharp\\chromeExtension\\ChromeNativeHost\\bin\\Debug\\net7.0\\ChromeNativeHost.exe",
-	"type": "stdio",
-	"allowed_origins": ["chrome-extension://ohnnkpgbdgkbkkaolainnpkfhkdfcene/"]
-  }
